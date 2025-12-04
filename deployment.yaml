@@ -26,8 +26,17 @@ spec:
         ports:
         - containerPort: 3000
           name: http
+        securityContext:
+          allowPrivilegeEscalation: false
+          runAsNonRoot: true
+          capabilities:
+            drop: ["ALL"]
+          seccompProfile:
+            type: "RuntimeDefault"
+          runAsUser: 999
         resources:
           limits:
             cpu: 50m
           requests:
             cpu: 20m
+ 
